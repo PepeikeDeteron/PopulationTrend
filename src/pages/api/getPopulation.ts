@@ -3,8 +3,8 @@ import { Population, PopulationResponse } from '@/@types'
 
 export const getPopulation = async (
   prefCode: number
-): Promise<Population[] | number[]> => {
-  const response = await axios.get<PopulationResponse>(
+): Promise<Readonly<Population[]>> => {
+  const response = await axios.get<Readonly<PopulationResponse>>(
     `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
     {
       method: 'GET',
