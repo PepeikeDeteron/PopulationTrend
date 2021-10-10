@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import { getPopulation } from './api/getPopulation'
 import { getPrefectures } from './api/getPrefectures'
 
 const Home: React.VFC = () => {
@@ -12,6 +13,7 @@ const Home: React.VFC = () => {
       <div>
         <h1>yarn dev test</h1>
         <button onClick={() => getPrefectures()}>都道府県呼び出し</button>
+        <button onClick={() => getPopulation(13)}>東京都総人口呼び出し</button>
       </div>
     </>
   )
