@@ -11,6 +11,9 @@ on:
 jobs:
   jest:
     runs-on: ubuntu-latest
+    env:
+      RESAS_API_KEY: ${{ secret.RESAS_API_KEY }}
+
     steps:
       - uses: actions/setup-node@v2
         with:
