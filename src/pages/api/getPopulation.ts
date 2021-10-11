@@ -14,16 +14,16 @@ export const getPopulation = async (
     }
   )
 
-  const data = response.data.result.data[0].data
+  const extraction = response.data.result.data[0].data
 
   // 提示されたワイヤーフレームを参考に、10年間隔 & 2020年度までのデータを取得する
-  const processingYears = data.filter((year) => {
-    return year.year % 10 === 0 && year.year <= 2020
+  const processingYears = extraction.filter((data) => {
+    return data.year % 10 === 0 && data.year <= 2020
   })
 
   // 人口のみ抽出する
-  // const populationData = processingYears.map((obj) => {
-  //   return obj.value
+  // const populationData = processingYears.map((data) => {
+  //   return data.value
   // })
 
   console.log(processingYears)
