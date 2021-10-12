@@ -4,6 +4,7 @@ import styled from 'styled-components'
 type ContainerProps = {
   id: number
   name: string
+  onClick: () => void
 }
 
 type Props = {
@@ -11,11 +12,16 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, id, name } = props
+  const { className, id, name, onClick } = props
 
   return (
     <div className={className}>
-      <input type="checkbox" id={`prefCode-${id}`} name={`prefName-${name}`} />
+      <input
+        type="checkbox"
+        id={`prefCode-${id}`}
+        name={`prefName-${name}`}
+        onClick={onClick}
+      />
       <label htmlFor={`prefCode-${id}`}>{name}</label>
     </div>
   )
