@@ -32,6 +32,7 @@ const StyledComponent = styled(Component)`
   input[type='checkbox'] {
     margin-right: 0.5rem;
     cursor: pointer;
+    user-select: none;
   }
 `
 
