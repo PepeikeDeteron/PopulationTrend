@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 type ContainerProps = {
-  // children: React.ReactNode
-  content: string
+  id: number
+  name: string
 }
 
 type Props = {
@@ -11,15 +11,12 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, content } = props
+  const { className, id, name } = props
 
   return (
     <div className={className}>
-      <input type="checkbox" id="prefCode-01" name="prefName-北海道" />
-      <label htmlFor="prefCode-01">
-        {/* {children} */}
-        {content}
-      </label>
+      <input type="checkbox" id={`prefCode-${id}`} name={`prefName-${name}`} />
+      <label htmlFor={`prefCode-${id}`}>{name}</label>
     </div>
   )
 }
@@ -27,11 +24,13 @@ const Component: React.VFC<Props> = (props) => {
 const StyledComponent = styled(Component)`
   display: inline-block;
   padding: 0.5rem;
+  width: 10rem;
 
   label,
   input[type='checkbox'] {
     margin-right: 0.5rem;
     cursor: pointer;
+    user-select: none;
   }
 `
 

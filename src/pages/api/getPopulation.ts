@@ -26,6 +26,5 @@ export const getPopulation = async (
   //   return data.value
   // })
 
-  console.log(processingYears)
   return processingYears
 }
