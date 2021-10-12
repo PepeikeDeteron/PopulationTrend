@@ -14,6 +14,5 @@ export const getPrefectures = async (): Promise<Readonly<Prefectures[]>> => {
 
   const prefecturesData = response.data.result
 
-  console.log(prefecturesData)
   return prefecturesData
 }
