@@ -6,11 +6,13 @@ exports[`Storyshots components/Checkbox Default 1`] = `
 >
   <input
     id="prefCode-undefined"
-    name="prefName-undefined"
+    name="prefName-東京都"
     type="checkbox"
   />
   <label
     htmlFor="prefCode-undefined"
-  />
+  >
+    東京都
+  </label>
 </div>
 `;

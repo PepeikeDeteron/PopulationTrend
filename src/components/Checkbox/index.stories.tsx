@@ -13,5 +13,5 @@ const Template: Story<ComponentProps<typeof Checkbox>> = (props) => (
 
 export const Default = Template.bind({})
 Default.args = {
-  content: '東京都',
+  name: '東京都',
 }
