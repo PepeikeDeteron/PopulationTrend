@@ -16,10 +16,7 @@ const Component: React.VFC<Props> = (props) => {
   return (
     <div className={className}>
       <input type="checkbox" id={`prefCode-${id}`} name={`prefName-${name}`} />
-      <label htmlFor={`prefCode-${id}`}>
-        {/* ラベルの文字数を4文字の県名に揃える */}
-        {name.length === 3 ? name + '　' : name}
-      </label>
+      <label htmlFor={`prefCode-${id}`}>{name}</label>
     </div>
   )
 }
@@ -27,6 +24,7 @@ const Component: React.VFC<Props> = (props) => {
 const StyledComponent = styled(Component)`
   display: inline-block;
   padding: 0.5rem;
+  width: 10rem;
 
   label,
   input[type='checkbox'] {
