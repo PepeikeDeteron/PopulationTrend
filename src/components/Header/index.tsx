@@ -25,6 +25,10 @@ const StyledComponent = styled(Component)`
     color: white;
     font-size: 2.5rem;
     text-align: center;
+
+    @media screen and (max-width: 599px) {
+      font-size: 1.8rem;
+    }
   }
 `
 
