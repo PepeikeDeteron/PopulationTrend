@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 type ContainerProps = {
-  // children: React.ReactNode
-  content: string
+  id: number
+  name: string
 }
 
 type Props = {
@@ -11,14 +11,14 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, content } = props
+  const { className, id, name } = props
 
   return (
     <div className={className}>
-      <input type="checkbox" id="prefCode-01" name="prefName-北海道" />
+      <input type="checkbox" id={`prefCode-${id}`} name={`prefName-${name}`} />
       <label htmlFor="prefCode-01">
-        {/* {children} */}
-        {content}
+        {/* ラベルの文字数を4文字の県名に揃える */}
+        {name.length === 3 ? name + '　' : name}
       </label>
     </div>
   )

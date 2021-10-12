@@ -1,30 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Prefectures } from '@/@types'
 import Checkbox from '@/components/Checkbox'
+import { getPrefectures } from '@/pages/api/getPrefectures'
+
+type ContainerProps = {
+  prefectures: Prefectures[]
+}
 
 type Props = {
   className?: string
-}
+} & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className } = props
+  const { className, prefectures } = props
+
   return (
     <div className={className}>
-      <Checkbox content="北海道" />
-      <Checkbox content="青森県" />
-      <Checkbox content="岩手県" />
-      <Checkbox content="宮城県" />
-      <Checkbox content="秋田県" />
-      <Checkbox content="山形県" />
-      <Checkbox content="福島県" />
-
-      <Checkbox content="北海道" />
-      <Checkbox content="青森県" />
-      <Checkbox content="岩手県" />
-      <Checkbox content="宮城県" />
-      <Checkbox content="秋田県" />
-      <Checkbox content="山形県" />
-      <Checkbox content="福島県" />
+      {prefectures &&
+        prefectures.map((prefecture) => (
+          <Checkbox
+            key={prefecture.prefCode}
+            id={prefecture.prefCode}
+            name={prefecture.prefName}
+          />
+        ))}
     </div>
   )
 }
@@ -35,8 +35,25 @@ const StyledComponent = styled(Component)`
   justify-content: flex-start;
 `
 
-const Container: React.VFC<Props> = (props) => {
-  return <StyledComponent {...props} />
+const Container: React.VFC<Partial<ContainerProps>> = () => {
+  const [prefectures, setPrefectures] = useState<Prefectures[]>([])
+
+  // 都道府県一覧を取得
+  useEffect(() => {
+    getPrefectures()
+      .then((res) => {
+        setPrefectures(res as Prefectures[])
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [])
+
+  const containerProps = {
+    prefectures,
+  }
+
+  return <StyledComponent {...{ ...containerProps }} />
 }
 
 export default React.memo(Container)
