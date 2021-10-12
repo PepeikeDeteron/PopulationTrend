@@ -20,6 +20,8 @@
   },
   "dependencies": {
     "axios": "^0.22.0",
+    "highcharts": "^9.2.2",
+    "highcharts-react-official": "^3.0.0",
     "next": "11.1.2",
     "normalize.css": "^8.0.1",
     "react": "17.0.2",
