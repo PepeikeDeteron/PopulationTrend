@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import CheckboxList from '@/components/CheckboxList'
 import Header from '@/components/Header'
-import { getPopulation } from '@/pages/api/getPopulation'
-import { getPrefectures } from '@/pages/api/getPrefectures'
 
 type ContainerProps = {
   children?: React.ReactNode
@@ -16,18 +15,29 @@ const Component: React.VFC<Props> = (props) => {
   return (
     <>
       <Header title="都道府県別 総人口推移グラフ" />
-      <h2>API 呼び出しボタン テスト表示</h2>
-      <button onClick={() => getPrefectures()}>都道府県呼び出し</button>
-      <button onClick={() => getPopulation(13)}>東京都総人口呼び出し</button>
-      {props?.children}
+      <div className={props.className}>
+        <h3 className="checkbox-list-title">都道府県</h3>
+        <CheckboxList />
+        {props?.children}
+      </div>
     </>
   )
 }
 
-const StyledComponent = styled(Component)``
+const StyledComponent = styled(Component)`
+  padding: 4rem 10vh;
+
+  .checkbox-list-title {
+    padding-bottom: 1rem;
+  }
+
+  @media screen and (max-width: 599px) {
+    padding: 2rem 3vh;
+  }
+`
 
 const Container: React.VFC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />
 }
 
-export default React.memo(Container)
+export default Container
