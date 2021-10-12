@@ -2,17 +2,15 @@
 
 exports[`Storyshots components/Checkbox Default 1`] = `
 <div
-  className="Checkbox__StyledComponent-sc-38iygs-0 gwpziX"
+  className="Checkbox__StyledComponent-sc-38iygs-0 fexhuc"
 >
   <input
-    id="prefCode-01"
-    name="prefName-北海道"
+    id="prefCode-undefined"
+    name="prefName-undefined"
     type="checkbox"
   />
   <label
-    htmlFor="prefCode-01"
-  >
-    東京都
-  </label>
+    htmlFor="prefCode-undefined"
+  />
 </div>
 `;
