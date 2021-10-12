@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/Checkbox Default 1`] = `
+<div
+  className="Checkbox__StyledComponent-sc-38iygs-0 gwpziX"
+>
+  <input
+    id="prefCode-01"
+    name="prefName-北海道"
+    type="checkbox"
+  />
+  <label
+    htmlFor="prefCode-01"
+  >
+    東京都
+  </label>
+</div>
+`;
