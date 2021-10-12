@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Chart from '@/components/Chart'
 import CheckboxList from '@/components/CheckboxList'
 import Header from '@/components/Header'
 
@@ -18,6 +19,9 @@ const Component: React.VFC<Props> = (props) => {
       <div className={props.className}>
         <h3 className="checkbox-list-title">都道府県</h3>
         <CheckboxList />
+        <div className="chart-area">
+          <Chart />
+        </div>
         {props?.children}
       </div>
     </>
@@ -29,6 +33,10 @@ const StyledComponent = styled(Component)`
 
   .checkbox-list-title {
     padding-bottom: 1rem;
+  }
+
+  .chart-area {
+    padding-top: 5rem;
   }
 
   @media screen and (max-width: 599px) {
