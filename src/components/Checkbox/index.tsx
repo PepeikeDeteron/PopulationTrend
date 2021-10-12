@@ -16,7 +16,7 @@ const Component: React.VFC<Props> = (props) => {
   return (
     <div className={className}>
       <input type="checkbox" id={`prefCode-${id}`} name={`prefName-${name}`} />
-      <label htmlFor="prefCode-01">
+      <label htmlFor={`prefCode-${id}`}>
         {/* ラベルの文字数を4文字の県名に揃える */}
         {name.length === 3 ? name + '　' : name}
       </label>
