@@ -12,7 +12,7 @@ const Home: React.VFC = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Header />
+        <Header title="都道府県別 総人口推移グラフ" />
         <h1>yarn dev test</h1>
         <button onClick={() => getPrefectures()}>都道府県呼び出し</button>
         <button onClick={() => getPopulation(13)}>東京都総人口呼び出し</button>

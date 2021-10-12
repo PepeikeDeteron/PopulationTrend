@@ -1,17 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
 
-type Props = {
-  className?: string
+type ContainerProps = {
+  title: string
 }
 
+type Props = {
+  className?: string
+} & ContainerProps
+
 const Component: React.VFC<Props> = (props) => {
-  const { className } = props
+  const { className, title } = props
 
   return (
     <>
       <header className={className}>
-        <p className="title">都道府県別 総人口推移グラフ</p>
+        <h2 className="title">{title}</h2>
       </header>
     </>
   )
@@ -23,16 +27,11 @@ const StyledComponent = styled(Component)`
   .title {
     padding: 1.5rem;
     color: white;
-    font-size: 2.5rem;
     text-align: center;
-
-    @media screen and (max-width: 599px) {
-      font-size: 1.8rem;
-    }
   }
 `
 
-const Container: React.VFC<Props> = (props) => {
+const Container: React.VFC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />
 }
 
