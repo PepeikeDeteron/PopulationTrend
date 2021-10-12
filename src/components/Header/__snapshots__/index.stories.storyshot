@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots components/Header Default 1`] = `
+<header
+  className="Header__StyledComponent-sc-mmtc7h-0 kmxpuJ"
+>
+  <h2
+    className="title"
+  >
+    都道府県別 総人口推移グラフ
+  </h2>
+</header>
+`;

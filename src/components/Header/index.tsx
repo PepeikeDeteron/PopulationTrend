@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 type ContainerProps = {
-  label: string
+  title: string
 }
 
 type Props = {
@@ -10,10 +10,26 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  return <button>{props.label}</button>
+  const { className, title } = props
+
+  return (
+    <>
+      <header className={className}>
+        <h2 className="title">{title}</h2>
+      </header>
+    </>
+  )
 }
 
-const StyledComponent = styled(Component)``
+const StyledComponent = styled(Component)`
+  background-color: #1976d2;
+
+  .title {
+    padding: 1.5rem;
+    color: white;
+    text-align: center;
+  }
+`
 
 const Container: React.VFC<ContainerProps> = (props) => {
   return <StyledComponent {...props} />
