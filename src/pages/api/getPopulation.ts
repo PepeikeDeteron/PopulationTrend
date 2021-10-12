@@ -3,7 +3,7 @@ import { Population, PopulationResponse } from '@/@types'
 
 export const getPopulation = async (
   prefCode: number
-): Promise<Readonly<Population[]>> => {
+): Promise<Readonly<Population[] | number[]>> => {
   const response = await axios.get<Readonly<PopulationResponse>>(
     `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
     {
@@ -22,9 +22,9 @@ export const getPopulation = async (
   })
 
   // 人口のみ抽出する
-  // const populationData = processingYears.map((data) => {
-  //   return data.value
-  // })
+  const populationData = processingYears.map((data) => {
+    return data.value
+  })
 
-  return processingYears
+  return populationData
 }
