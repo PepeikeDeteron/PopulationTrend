@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import Head from 'next/head'
 import styled from 'styled-components'
 import { Prefectures, ChartProps } from '@/@types'
 import Chart from '@/components/Chart'
@@ -24,6 +25,34 @@ type Props = {
 const Component: React.VFC<Props> = (props) => {
   return (
     <>
+      <Head>
+        <title>Population Trend</title>
+        <link rel="icon" href="/favicon.ico" />
+        <link
+          rel="manifest"
+          href="https://population-trend.vercel.app/manifest.json"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#1976d2" />
+        <meta
+          property="description"
+          content="地域経済分析システム「RESAS-API」から取得した都道府県別の総人口推移グラフを表示するサイトです"
+        />
+        <meta property="og:title" content="Population Trend" />
+        <meta property="og:site_name" content="Population Trend" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://population-trend.vercel.app" />
+        <meta
+          property="og:description"
+          content="地域経済分析システム「RESAS-API」から取得した都道府県別の総人口推移グラフを表示するサイトです"
+        />
+        <meta
+          property="og:image"
+          content="https://population-trend.vercel.app/favicon.ico"
+        />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+
       <Header title="都道府県別 総人口推移グラフ" />
       <div className={props.className}>
         <h3 className="checkbox-list-title">都道府県</h3>
