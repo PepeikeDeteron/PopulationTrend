@@ -27,7 +27,8 @@ const Component: React.VFC<Props> = (props) => {
     <>
       <Head>
         <title>Population Trend</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://population-trend.vercel.app" />
+        <link rel="icon" href="/favicon.png" />
         <link
           rel="manifest"
           href="https://population-trend.vercel.app/manifest.json"
@@ -48,7 +49,7 @@ const Component: React.VFC<Props> = (props) => {
         />
         <meta
           property="og:image"
-          content="https://population-trend.vercel.app/favicon.ico"
+          content="https://population-trend.vercel.app/favicon.png"
         />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
