@@ -78,10 +78,10 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
       prefCode: Prefectures['prefCode'],
       prefName: Prefectures['prefName']
     ) => {
+      const prevPrefPopulation = [...prefPopulation] // 配列を複製
+
       // チェックが押されたときの処理
       if (checked) {
-        const prevPrefPopulation = [...prefPopulation] // 配列を複製
-
         getPopulation(prefCode, prefName)
           .then((res) => {
             prevPrefPopulation.push({
@@ -90,14 +90,22 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
             })
 
             setPrefPopulation(prevPrefPopulation)
-            console.log(prevPrefPopulation)
           })
 
           .catch((error) => {
             console.error(error)
           })
-      } else {
-        console.log('else')
+      }
+      // チェックを外した時の処理
+      else {
+        if (
+          prevPrefPopulation.findIndex(
+            (index) => index.prefName === prefName
+          ) !== -1
+        )
+          prevPrefPopulation.splice(-1)
+
+        setPrefPopulation(prevPrefPopulation)
       }
     },
     [prefPopulation]
