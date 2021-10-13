@@ -6,7 +6,7 @@ import Checkbox from '@/components/Checkbox'
 type ContainerProps = {
   prefectures: Prefectures[]
   population: ChartProps[]
-  onGetPrefPopulation: (prefCode: number) => void
+  onGetPrefPopulation: (prefCode: number, prefName: string) => void
 }
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, prefectures, population, onGetPrefPopulation } = props
+  const { className, prefectures, onGetPrefPopulation } = props
 
   return (
     <>
@@ -25,13 +25,12 @@ const Component: React.VFC<Props> = (props) => {
               key={prefecture.prefCode}
               id={prefecture.prefCode}
               name={prefecture.prefName}
-              onClick={() => onGetPrefPopulation(prefecture.prefCode)}
+              onClick={() =>
+                onGetPrefPopulation(prefecture.prefCode, prefecture.prefName)
+              }
             />
           ))}
       </div>
-
-      {/* 仮実装 */}
-      {population}
     </>
   )
 }

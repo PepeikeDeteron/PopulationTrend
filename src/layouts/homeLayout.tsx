@@ -10,7 +10,7 @@ import { getPrefectures } from '@/pages/api/getPrefectures'
 type ContainerProps = {
   prefectures: Prefectures[]
   prefPopulation: ChartProps[]
-  onGetPrefPopulation: (prefCode: number) => void
+  onGetPrefPopulation: (prefCode: number, prefName: string) => void
 }
 
 type Props = {
@@ -70,7 +70,7 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
   // 各都道府県の人口推移データを取得
   const onGetPrefPopulation = useCallback(
     (prefCode: Prefectures['prefCode'], prefName: Prefectures['prefName']) => {
-      getPopulation(prefCode)
+      getPopulation(prefCode, prefName)
         .then((res) => {
           prefPopulation.push({
             prefName: prefName,
