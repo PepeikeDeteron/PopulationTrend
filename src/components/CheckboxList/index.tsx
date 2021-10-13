@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Prefectures, Population } from '@/@types'
+import { Prefectures, ChartProps } from '@/@types'
 import Checkbox from '@/components/Checkbox'
 
 type ContainerProps = {
   prefectures: Prefectures[]
-  population: Population[]
-  onGetPopulation: (prefCode: number) => void
+  population: ChartProps[]
+  onGetPrefPopulation: (prefCode: number) => void
 }
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { className, prefectures, population, onGetPopulation } = props
+  const { className, prefectures, population, onGetPrefPopulation } = props
 
   return (
     <>
@@ -25,7 +25,7 @@ const Component: React.VFC<Props> = (props) => {
               key={prefecture.prefCode}
               id={prefecture.prefCode}
               name={prefecture.prefName}
-              onClick={() => onGetPopulation(prefecture.prefCode)}
+              onClick={() => onGetPrefPopulation(prefecture.prefCode)}
             />
           ))}
       </div>

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Prefectures, Population } from '@/@types'
+import { Prefectures, ChartProps } from '@/@types'
 import Chart from '@/components/Chart'
 import CheckboxList from '@/components/CheckboxList'
 import Header from '@/components/Header'
@@ -9,8 +9,8 @@ import { getPrefectures } from '@/pages/api/getPrefectures'
 
 type ContainerProps = {
   prefectures: Prefectures[]
-  population: Population[]
-  onGetPopulation: (prefCode: number) => void
+  prefPopulation: ChartProps[]
+  onGetPrefPopulation: (prefCode: number) => void
 }
 
 type Props = {
@@ -25,11 +25,11 @@ const Component: React.VFC<Props> = (props) => {
         <h3 className="checkbox-list-title">都道府県</h3>
         <CheckboxList
           prefectures={props.prefectures}
-          population={props.population}
-          onGetPopulation={props.onGetPopulation}
+          population={props.prefPopulation}
+          onGetPrefPopulation={props.onGetPrefPopulation}
         />
         <div className="chart-area">
-          <Chart prefectureCode={props.onGetPopulation} />
+          <Chart populationData={props.prefPopulation} />
         </div>
       </div>
     </>
@@ -52,9 +52,9 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.VFC<ContainerProps> = () => {
+const Container: React.VFC<Partial<ContainerProps>> = () => {
   const [prefectures, setPrefectures] = useState<Prefectures[]>([])
-  const [population, setPopulation] = useState<Population[]>([])
+  const [prefPopulation, setPrefPopulation] = useState<ChartProps[]>([])
 
   // 都道府県一覧を取得
   useEffect(() => {
@@ -68,12 +68,19 @@ const Container: React.VFC<ContainerProps> = () => {
   }, [])
 
   // 各都道府県の人口推移データを取得
-  const onGetPopulation = useCallback(
-    (prefCode: number) => {
+  const onGetPrefPopulation = useCallback(
+    (prefCode: Prefectures['prefCode'], prefName: Prefectures['prefName']) => {
       getPopulation(prefCode)
         .then((res) => {
-          setPopulation(res as Population[])
+          prefPopulation.push({
+            prefName: prefName,
+            value: res as ChartProps['value'],
+          })
+
+          setPrefPopulation(prefPopulation)
+          console.log(prefPopulation)
         })
+
         .catch((error) => {
           console.error(error)
         })
@@ -83,11 +90,11 @@ const Container: React.VFC<ContainerProps> = () => {
 
   const containerProps = {
     prefectures,
-    population,
-    onGetPopulation,
+    prefPopulation,
+    onGetPrefPopulation,
   }
 
-  return <StyledComponent {...{ ...containerProps }} />
+  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
 }
 
 export default Container

@@ -6,7 +6,7 @@ import { ChartProps } from '@/@types'
 
 type ContainerProps = {
   chartOptions?: Highcharts.Options
-  prefectureCode: (prefCode: number) => void
+  populationData: ChartProps[]
 }
 
 type Props = {
@@ -14,28 +14,25 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { chartOptions, prefectureCode } = props
+  const { chartOptions } = props
 
   return (
     <>
-      <HighchartsReact
-        highcharts={Highcharts}
-        options={chartOptions}
-        prefectureCode={prefectureCode}
-      />
+      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
     </>
   )
 }
 
 const StyledComponent = styled(Component)``
 
-const Container: React.VFC<ContainerProps> = () => {
-  const population: ChartProps[] = []
-  const populationData: Highcharts.SeriesOptionsType[] = []
+const Container: React.VFC<ContainerProps> = (props) => {
+  const { populationData } = props
+
+  const prevPopulationData: Highcharts.SeriesOptionsType[] = []
 
   // 都道府県名と人口をセットする
-  for (const p of population) {
-    populationData.push({
+  for (const p of populationData) {
+    prevPopulationData.push({
       type: 'spline',
       name: p.prefName,
       data: p.value,
