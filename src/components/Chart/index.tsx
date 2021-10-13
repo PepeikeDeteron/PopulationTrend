@@ -28,14 +28,20 @@ const StyledComponent = styled(Component)``
 const Container: React.VFC<ContainerProps> = (props) => {
   const { populationData } = props
 
-  const prevPopulationData: Highcharts.SeriesOptionsType[] = []
+  const newPopulationData: Highcharts.SeriesOptionsType[] = []
 
   // 都道府県名と人口をセットする
   for (const p of populationData) {
-    prevPopulationData.push({
+    // const value: number[] = []
+
+    // for (const pd of p.value) {
+    //   value.push(pd)
+    // }
+
+    newPopulationData.push({
       type: 'spline',
       name: p.prefName,
-      data: p.value,
+      data: p.value, //value,
     })
   }
 
@@ -84,7 +90,10 @@ const Container: React.VFC<ContainerProps> = (props) => {
       },
     },
 
-    series: populationData,
+    //FIXME: 初回レンダリング時に表示されない
+    series: newPopulationData || [
+      { type: 'spline', name: '都道府県名', data: [] },
+    ],
 
     responsive: {
       rules: [

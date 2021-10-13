@@ -10,7 +10,11 @@ import { getPrefectures } from '@/pages/api/getPrefectures'
 type ContainerProps = {
   prefectures: Prefectures[]
   prefPopulation: ChartProps[]
-  onGetPrefPopulation: (prefCode: number, prefName: string) => void
+  onGetPrefPopulation: (
+    checked: any,
+    prefCode: number,
+    prefName: string
+  ) => void
 }
 
 type Props = {
@@ -69,21 +73,30 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
 
   // 各都道府県の人口推移データを取得
   const onGetPrefPopulation = useCallback(
-    (prefCode: Prefectures['prefCode'], prefName: Prefectures['prefName']) => {
-      getPopulation(prefCode, prefName)
-        .then((res) => {
-          prefPopulation.push({
-            prefName: prefName,
-            value: res as ChartProps['value'],
+    (
+      checked: boolean,
+      prefCode: Prefectures['prefCode'],
+      prefName: Prefectures['prefName']
+    ) => {
+      // チェックが押されたときの処理
+      if (checked) {
+        getPopulation(prefCode, prefName)
+          .then((res) => {
+            prefPopulation.push({
+              prefName: prefName,
+              value: res as ChartProps['value'],
+            })
+
+            setPrefPopulation(prefPopulation)
+            console.log(prefPopulation)
           })
 
-          setPrefPopulation(prefPopulation)
-          console.log(prefPopulation)
-        })
-
-        .catch((error) => {
-          console.error(error)
-        })
+          .catch((error) => {
+            console.error(error)
+          })
+      } else {
+        console.log('else')
+      }
     },
     [getPopulation]
   )

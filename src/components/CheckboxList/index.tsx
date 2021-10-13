@@ -6,7 +6,11 @@ import Checkbox from '@/components/Checkbox'
 type ContainerProps = {
   prefectures: Prefectures[]
   population: ChartProps[]
-  onGetPrefPopulation: (prefCode: number, prefName: string) => void
+  onGetPrefPopulation: (
+    checked: any,
+    prefCode: number,
+    prefName: string
+  ) => void
 }
 
 type Props = {
@@ -25,8 +29,12 @@ const Component: React.VFC<Props> = (props) => {
               key={prefecture.prefCode}
               id={prefecture.prefCode}
               name={prefecture.prefName}
-              onClick={() =>
-                onGetPrefPopulation(prefecture.prefCode, prefecture.prefName)
+              onClick={(event) =>
+                onGetPrefPopulation(
+                  event.target.checked,
+                  prefecture.prefCode,
+                  prefecture.prefName
+                )
               }
             />
           ))}
