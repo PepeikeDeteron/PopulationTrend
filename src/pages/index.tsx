@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import Template from '@/layouts/homeLayout'
+import Template from '@/pages/Home'
 
 const Home: React.VFC = () => {
   return (
