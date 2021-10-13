@@ -5,7 +5,8 @@ import HighchartsReact from 'highcharts-react-official'
 import { Chart } from '@/@types'
 
 type ContainerProps = {
-  chartOptions: Highcharts.Options
+  chartOptions?: Highcharts.Options
+  prefectureCode: (prefCode: number) => void
 }
 
 type Props = {
@@ -13,18 +14,22 @@ type Props = {
 } & ContainerProps
 
 const Component: React.VFC<Props> = (props) => {
-  const { chartOptions } = props
+  const { chartOptions, prefectureCode } = props
 
   return (
     <>
-      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={chartOptions}
+        prefectureCode={prefectureCode}
+      />
     </>
   )
 }
 
 const StyledComponent = styled(Component)``
 
-const Container: React.VFC<Partial<ContainerProps>> = () => {
+const Container: React.VFC<ContainerProps> = () => {
   const population: Chart[] = []
   const populationData: Highcharts.SeriesOptionsType[] = []
 
@@ -104,7 +109,7 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
     chartOptions,
   }
 
-  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
+  return <StyledComponent {...{ ...(containerProps as any) }} />
 }
 
 export default React.memo(Container)
