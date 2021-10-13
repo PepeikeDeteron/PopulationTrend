@@ -2,9 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import { ChartProps } from '@/@types'
 
 type ContainerProps = {
-  chartOptions: any // Highcharts.Options
+  chartOptions?: Highcharts.Options
+  populationData: ChartProps[]
 }
 
 type Props = {
@@ -23,12 +25,27 @@ const Component: React.VFC<Props> = (props) => {
 
 const StyledComponent = styled(Component)``
 
-const Container: React.VFC<Partial<ContainerProps>> = () => {
-  const chartOptions = {
-    chart: {
-      type: 'spline',
-    },
+const Container: React.VFC<ContainerProps> = (props) => {
+  const { populationData } = props
 
+  const newPopulationData: Highcharts.SeriesOptionsType[] = []
+
+  // 都道府県名と人口をセットする
+  for (const p of populationData) {
+    // const value: number[] = []
+
+    // for (const pd of p.value) {
+    //   value.push(pd)
+    // }
+
+    newPopulationData.push({
+      type: 'spline',
+      name: p.prefName,
+      data: p.value, //value,
+    })
+  }
+
+  const chartOptions = {
     title: {
       text: '人口推移',
       style: {
@@ -47,7 +64,6 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
           fontWeight: 'bold',
         },
       },
-      // TODO: API から取得する
       categories: ['1980', '1990', '2000', '2010', '2020'],
     },
 
@@ -74,28 +90,9 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
       },
     },
 
-    // TODO: API から取得する
-    series: [
-      {
-        name: 'テスト1',
-        data: [69658, 97031, 119931, 137133, 154175],
-      },
-      {
-        name: 'テスト2',
-        data: [29851, 32490, 50282, 88121, 140434],
-      },
-      {
-        name: 'テスト3',
-        data: [19771, 20185, 24377, 32147, 59387],
-      },
-      {
-        name: 'テスト4',
-        data: [2169, 15112, 22452, 34400, 31227],
-      },
-      {
-        name: 'テスト5',
-        data: [11248, 8989, 11816, 18274, 18111],
-      },
+    //FIXME: 初回レンダリング時に表示されない
+    series: newPopulationData || [
+      { type: 'spline', name: '都道府県名', data: [] },
     ],
 
     responsive: {
@@ -118,7 +115,7 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
     chartOptions,
   }
 
-  return <StyledComponent {...{ ...containerProps }} />
+  return <StyledComponent {...{ ...(containerProps as any) }} />
 }
 
 export default React.memo(Container)

@@ -4,7 +4,7 @@ import styled from 'styled-components'
 type ContainerProps = {
   id: number
   name: string
-  onClick: () => void
+  onClick: (event: any) => void
 }
 
 type Props = {

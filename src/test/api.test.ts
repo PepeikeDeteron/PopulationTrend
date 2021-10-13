@@ -9,7 +9,7 @@ describe('RESAS API 接続のテスト', () => {
   })
 
   it('東京都の総人口を取得できているか (10年間隔, 2020年まで)', async () => {
-    const response = await getPopulation(13) // 13 ... 東京都の prefCode
+    const response = await getPopulation(13, '東京都')
     expect(response.length).toBe(7)
   })
 })

@@ -1,11 +1,20 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { Prefectures, ChartProps } from '@/@types'
 import Chart from '@/components/Chart'
 import CheckboxList from '@/components/CheckboxList'
 import Header from '@/components/Header'
+import { getPopulation } from '@/pages/api/getPopulation'
+import { getPrefectures } from '@/pages/api/getPrefectures'
 
 type ContainerProps = {
-  children?: React.ReactNode
+  prefectures: Prefectures[]
+  prefPopulation: ChartProps[]
+  onGetPrefPopulation: (
+    checked: any,
+    prefCode: number,
+    prefName: string
+  ) => void
 }
 
 type Props = {
@@ -18,11 +27,14 @@ const Component: React.VFC<Props> = (props) => {
       <Header title="都道府県別 総人口推移グラフ" />
       <div className={props.className}>
         <h3 className="checkbox-list-title">都道府県</h3>
-        <CheckboxList />
+        <CheckboxList
+          prefectures={props.prefectures}
+          population={props.prefPopulation}
+          onGetPrefPopulation={props.onGetPrefPopulation}
+        />
         <div className="chart-area">
-          <Chart />
+          <Chart populationData={props.prefPopulation} />
         </div>
-        {props?.children}
       </div>
     </>
   )
@@ -44,8 +56,58 @@ const StyledComponent = styled(Component)`
   }
 `
 
-const Container: React.VFC<ContainerProps> = (props) => {
-  return <StyledComponent {...props} />
+const Container: React.VFC<Partial<ContainerProps>> = () => {
+  const [prefectures, setPrefectures] = useState<Prefectures[]>([])
+  const [prefPopulation, setPrefPopulation] = useState<ChartProps[]>([])
+
+  // 都道府県一覧を取得
+  useEffect(() => {
+    getPrefectures()
+      .then((res) => {
+        setPrefectures(res as Prefectures[])
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [])
+
+  // 各都道府県の人口推移データを取得
+  const onGetPrefPopulation = useCallback(
+    (
+      checked: boolean,
+      prefCode: Prefectures['prefCode'],
+      prefName: Prefectures['prefName']
+    ) => {
+      // チェックが押されたときの処理
+      if (checked) {
+        getPopulation(prefCode, prefName)
+          .then((res) => {
+            prefPopulation.push({
+              prefName: prefName,
+              value: res as ChartProps['value'],
+            })
+
+            setPrefPopulation(prefPopulation)
+            console.log(prefPopulation)
+          })
+
+          .catch((error) => {
+            console.error(error)
+          })
+      } else {
+        console.log('else')
+      }
+    },
+    [getPopulation]
+  )
+
+  const containerProps = {
+    prefectures,
+    prefPopulation,
+    onGetPrefPopulation,
+  }
+
+  return <StyledComponent {...{ ...(containerProps as ContainerProps) }} />
 }
 
 export default Container
