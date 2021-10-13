@@ -6,7 +6,7 @@ const Home: React.VFC = () => {
   return (
     <>
       <Head>
-        <title>Hello World</title>
+        <title>都道府県別 総人口推移グラフ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Template />
