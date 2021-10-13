@@ -25,3 +25,9 @@ export type PopulationResponse = {
     }[]
   }
 }
+
+// チャート -----------------------------------------------------------------------
+export type Chart = {
+  prefName: Prefectures['prefName']
+  value: Population['value'][]
+}
