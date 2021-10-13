@@ -98,12 +98,11 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
       }
       // チェックを外した時の処理
       else {
-        if (
-          prevPrefPopulation.findIndex(
-            (index) => index.prefName === prefName
-          ) !== -1
+        const deleteIndex = prevPrefPopulation.findIndex(
+          (index) => index.prefName === prefName
         )
-          prevPrefPopulation.splice(-1)
+
+        if (deleteIndex !== -1) prevPrefPopulation.splice(deleteIndex, 1)
 
         setPrefPopulation(prevPrefPopulation)
       }
