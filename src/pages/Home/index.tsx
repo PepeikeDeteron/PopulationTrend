@@ -100,7 +100,7 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
         console.log('else')
       }
     },
-    [getPopulation]
+    [prefPopulation]
   )
 
   const containerProps = {
