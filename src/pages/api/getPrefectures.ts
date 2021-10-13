@@ -12,7 +12,7 @@ export const getPrefectures = async (): Promise<Readonly<Prefectures[]>> => {
     }
   )
 
-  const prefecturesData = response.data.result
+  const prefecturesData = response?.data?.result
 
   return prefecturesData
 }
