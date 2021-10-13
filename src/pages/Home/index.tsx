@@ -80,15 +80,17 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
     ) => {
       // チェックが押されたときの処理
       if (checked) {
+        const prevPrefPopulation = [...prefPopulation] // 配列を複製
+
         getPopulation(prefCode, prefName)
           .then((res) => {
-            prefPopulation.push({
+            prevPrefPopulation.push({
               prefName: prefName,
               value: res as ChartProps['value'],
             })
 
-            setPrefPopulation(prefPopulation)
-            console.log(prefPopulation)
+            setPrefPopulation(prevPrefPopulation)
+            console.log(prevPrefPopulation)
           })
 
           .catch((error) => {

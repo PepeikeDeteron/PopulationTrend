@@ -32,16 +32,10 @@ const Container: React.VFC<ContainerProps> = (props) => {
 
   // 都道府県名と人口をセットする
   for (const p of populationData) {
-    // const value: number[] = []
-
-    // for (const pd of p.value) {
-    //   value.push(pd)
-    // }
-
     newPopulationData.push({
       type: 'spline',
       name: p.prefName,
-      data: p.value, //value,
+      data: p.value,
     })
   }
 
@@ -64,7 +58,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
           fontWeight: 'bold',
         },
       },
-      categories: ['1980', '1990', '2000', '2010', '2020'],
+      categories: ['1980', '1990', '2000', '2010', '2020', '2030', '2040'],
     },
 
     yAxis: {
@@ -90,7 +84,6 @@ const Container: React.VFC<ContainerProps> = (props) => {
       },
     },
 
-    //FIXME: 初回レンダリング時に表示されない
     series: newPopulationData || [
       { type: 'spline', name: '都道府県名', data: [] },
     ],
