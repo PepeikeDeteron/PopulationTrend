@@ -8,6 +8,8 @@ const Home: React.VFC = () => {
       <Head>
         <title>都道府県別 総人口推移グラフ</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
         <meta
           property="description"
           content="地域経済分析システム「RESAS-API」から取得した都道府県別の総人口推移グラフを表示するサイトです"
