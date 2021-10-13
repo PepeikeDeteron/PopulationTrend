@@ -13,6 +13,7 @@ const Home: React.VFC = () => {
           content="地域経済分析システム「RESAS-API」から取得した都道府県別の総人口推移グラフを表示するサイトです"
         />
         <meta property="og:title" content="都道府県別 総人口推移グラフ" />
+        <meta property="og:site_name" content="都道府県別 総人口推移グラフ" />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://population-trend.vercel.app" />
         <meta
