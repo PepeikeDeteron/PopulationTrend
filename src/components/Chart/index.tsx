@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
-import { Chart } from '@/@types'
+import { ChartProps } from '@/@types'
 
 type ContainerProps = {
   chartOptions?: Highcharts.Options
@@ -30,7 +30,7 @@ const Component: React.VFC<Props> = (props) => {
 const StyledComponent = styled(Component)``
 
 const Container: React.VFC<ContainerProps> = () => {
-  const population: Chart[] = []
+  const population: ChartProps[] = []
   const populationData: Highcharts.SeriesOptionsType[] = []
 
   // 都道府県名と人口をセットする
