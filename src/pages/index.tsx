@@ -11,7 +11,7 @@ type ContainerProps = {
   prefectures: Prefectures[]
   prefPopulation: ChartProps[]
   onGetPrefPopulation: (
-    checked: any,
+    checked: boolean,
     prefCode: number,
     prefName: string
   ) => void
