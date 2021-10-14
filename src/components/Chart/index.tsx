@@ -33,7 +33,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
   // 都道府県名と人口をセットする
   populationData.map((data) => {
     newPopulationData.push({
-      type: 'spline',
+      type: 'line',
       name: data.prefName,
       data: data.value,
     })
