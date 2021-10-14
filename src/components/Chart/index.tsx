@@ -31,13 +31,13 @@ const Container: React.VFC<ContainerProps> = (props) => {
   const newPopulationData: Highcharts.SeriesOptionsType[] = []
 
   // 都道府県名と人口をセットする
-  for (const p of populationData) {
+  populationData.map((data) => {
     newPopulationData.push({
       type: 'spline',
-      name: p.prefName,
-      data: p.value,
+      name: data.prefName,
+      data: data.value,
     })
-  }
+  })
 
   const chartOptions = {
     title: {
