@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
@@ -87,6 +87,11 @@ const Container: React.VFC<ContainerProps> = (props) => {
           fontWeight: 'bold',
         },
       },
+      labels: {
+        formatter: (data: any) => {
+          return Highcharts.numberFormat(data.value, 0, '', ',')
+        },
+      },
     },
 
     legend: {
@@ -94,13 +99,6 @@ const Container: React.VFC<ContainerProps> = (props) => {
       align: 'right',
       verticalAlign: 'top',
       y: 25,
-    },
-
-    plotOption: {
-      series: {
-        pointStart: 1980,
-        pointInterval: 10,
-      },
     },
 
     series: newPopulationData || [
@@ -122,6 +120,14 @@ const Container: React.VFC<ContainerProps> = (props) => {
       ],
     },
   }
+
+  useEffect(() => {
+    Highcharts.setOptions({
+      lang: {
+        thousandsSep: ',',
+      },
+    })
+  }, [])
 
   const containerProps = {
     chartOptions,
