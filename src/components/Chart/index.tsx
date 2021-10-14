@@ -127,7 +127,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
     chartOptions,
   }
 
-  return <StyledComponent {...{ ...(containerProps as any) }} />
+  return <StyledComponent {...props} {...(containerProps as unknown)} />
 }
 
 export default React.memo(Container)
