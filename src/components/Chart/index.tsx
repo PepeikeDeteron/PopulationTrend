@@ -101,6 +101,13 @@ const Container: React.VFC<ContainerProps> = (props) => {
       y: 25,
     },
 
+    plotOption: {
+      series: {
+        pointStart: 1980,
+        pointInterval: 10,
+      },
+    },
+
     series: newPopulationData || [
       { type: 'spline', name: '都道府県名', data: [] },
     ],
