@@ -8,8 +8,8 @@ describe('RESAS API 接続のテスト', () => {
     expect(response.length).toBe(47)
   })
 
-  it('東京都の総人口を取得できているか (10年間隔, 2020年まで)', async () => {
+  it('東京都の総人口を取得できているか (5年間隔, 1960年から2045年まで)', async () => {
     const response = await getPopulation(13, '東京都')
-    expect(response.length).toBe(7)
+    expect(response.length).toBe(18)
   })
 })
