@@ -31,13 +31,13 @@ const Container: React.VFC<ContainerProps> = (props) => {
   const newPopulationData: Highcharts.SeriesOptionsType[] = []
 
   // 都道府県名と人口をセットする
-  for (const p of populationData) {
+  populationData.map((data) => {
     newPopulationData.push({
       type: 'spline',
-      name: p.prefName,
-      data: p.value,
+      name: data.prefName,
+      data: data.value,
     })
-  }
+  })
 
   const chartOptions = {
     title: {
@@ -58,7 +58,26 @@ const Container: React.VFC<ContainerProps> = (props) => {
           fontWeight: 'bold',
         },
       },
-      categories: ['1980', '1990', '2000', '2010', '2020', '2030', '2040'],
+      categories: [
+        '1960',
+        '1965',
+        '1970',
+        '1975',
+        '1980',
+        '1985',
+        '1990',
+        '1995',
+        '2000',
+        '2005',
+        '2010',
+        '2015',
+        '2020',
+        '2025',
+        '2030',
+        '2035',
+        '2040',
+        '2045',
+      ],
     },
 
     yAxis: {
