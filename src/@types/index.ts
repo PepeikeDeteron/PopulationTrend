@@ -1,16 +1,16 @@
 // 都道府県一覧 ---------------------------------------------------------------------
-export type Prefectures = {
+export type PrefecturesProps = {
   prefCode: number
   prefName: string
 }
 
 export type PrefecturesResponse = {
   message: string | null | undefined
-  result: Prefectures[]
+  result: PrefecturesProps[]
 }
 
 // 人口構成 -----------------------------------------------------------------------
-export type Population = {
+export type PopulationProps = {
   year: number
   value: number
 }
@@ -21,13 +21,13 @@ export type PopulationResponse = {
     boundaryYear: number
     data: {
       label: string
-      data: Population[]
+      data: PopulationProps[]
     }[]
   }
 }
 
 // チャート -----------------------------------------------------------------------
 export type ChartProps = {
-  prefName: Prefectures['prefName']
-  value: Population['value'][]
+  prefName: PrefecturesProps['prefName']
+  value: PopulationProps['value'][]
 }

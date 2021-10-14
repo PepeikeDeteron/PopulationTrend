@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { Population, PopulationResponse } from '@/@types'
+import { PopulationProps, PopulationResponse } from '@/@types'
 
 export const getPopulation = async (
   prefCode: number,
   prefName: string // eslint-disable-line
-): Promise<Readonly<Population[] | number[]>> => {
+): Promise<Readonly<PopulationProps[] | number[]>> => {
   const response = await axios.get<Readonly<PopulationResponse>>(
     `https://opendata.resas-portal.go.jp/api/v1/population/composition/perYear?cityCode=-&prefCode=${prefCode}`,
     {

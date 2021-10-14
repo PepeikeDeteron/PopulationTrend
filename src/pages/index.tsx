@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { Prefectures, ChartProps } from '@/@types'
+import { PrefecturesProps, ChartProps } from '@/@types'
 import Chart from '@/components/Chart'
 import CheckboxList from '@/components/CheckboxList'
 import Header from '@/components/Header'
@@ -8,7 +8,7 @@ import { getPopulation } from '@/pages/api/getPopulation'
 import { getPrefectures } from '@/pages/api/getPrefectures'
 
 type ContainerProps = {
-  prefectures: Prefectures[]
+  prefectures: PrefecturesProps[]
   prefPopulation: ChartProps[]
   onGetPrefPopulation: (
     checked: boolean,
@@ -57,14 +57,14 @@ const StyledComponent = styled(Component)`
 `
 
 const Container: React.VFC<Partial<ContainerProps>> = () => {
-  const [prefectures, setPrefectures] = useState<Prefectures[]>([])
+  const [prefectures, setPrefectures] = useState<PrefecturesProps[]>([])
   const [prefPopulation, setPrefPopulation] = useState<ChartProps[]>([])
 
   // 都道府県一覧を取得
   useEffect(() => {
     getPrefectures()
       .then((res) => {
-        setPrefectures(res as Prefectures[])
+        setPrefectures(res as PrefecturesProps[])
       })
       .catch((error) => {
         console.error(error)
@@ -75,8 +75,8 @@ const Container: React.VFC<Partial<ContainerProps>> = () => {
   const onGetPrefPopulation = useCallback(
     (
       checked: boolean,
-      prefCode: Prefectures['prefCode'],
-      prefName: Prefectures['prefName']
+      prefCode: PrefecturesProps['prefCode'],
+      prefName: PrefecturesProps['prefName']
     ) => {
       const prevPrefPopulation = [...prefPopulation] // 配列を複製
 
