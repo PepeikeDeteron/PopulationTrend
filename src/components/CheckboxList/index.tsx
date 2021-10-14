@@ -1,13 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Prefectures, ChartProps } from '@/@types'
+import { PrefecturesProps, ChartProps } from '@/@types'
 import Checkbox from '@/components/Checkbox'
 
 type ContainerProps = {
-  prefectures: Prefectures[]
+  prefectures: PrefecturesProps[]
   population: ChartProps[]
   onGetPrefPopulation: (
-    checked: any,
+    checked: boolean,
     prefCode: number,
     prefName: string
   ) => void
