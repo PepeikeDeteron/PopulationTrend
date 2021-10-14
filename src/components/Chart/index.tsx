@@ -48,7 +48,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
     },
 
     subtitle: {
-      text: '出典: RESAS-API',
+      text: '出典: RESAS 地域経済分析システム',
     },
 
     xAxis: {
