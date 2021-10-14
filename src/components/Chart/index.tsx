@@ -33,7 +33,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
   // 都道府県名と人口をセットする
   populationData.map((data) => {
     newPopulationData.push({
-      type: 'spline',
+      type: 'line',
       name: data.prefName,
       data: data.value,
     })
@@ -48,7 +48,7 @@ const Container: React.VFC<ContainerProps> = (props) => {
     },
 
     subtitle: {
-      text: '出典: RESAS-API',
+      text: '出典: RESAS 地域経済分析システム',
     },
 
     xAxis: {
