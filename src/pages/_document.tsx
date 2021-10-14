@@ -11,9 +11,7 @@ class CustomDocument extends Document {
   render(): JSX.Element {
     return (
       <Html lang="ja">
-        <Head>
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />

@@ -17,14 +17,14 @@ const Component: React.VFC<Props> = ({ title, description, keyword, url }) => {
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
       <meta property="og:url" content={url} />
-      <meta property="og:image" content={`/favicon.png`} />
+      <meta property="og:image" content={`${url}/ogp.png`} />
       <meta property="og:site_name" content={title} />
       <meta name="keywords" content={keyword} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`/favicon.png`} />
+      <meta name="twitter:image" content={`${url}/ogp.png`} />
       <meta name="theme-color" content="#1976d2" />
       <meta property="description" content={description} />
       <link rel="canonical" href={url} />
