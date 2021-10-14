@@ -87,6 +87,11 @@ const Container: React.VFC<ContainerProps> = (props) => {
           fontWeight: 'bold',
         },
       },
+      labels: {
+        formatter: (data: any) => {
+          return Highcharts.numberFormat(data.value, 0, '', ',')
+        },
+      },
     },
 
     legend: {
