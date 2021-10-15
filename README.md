@@ -27,14 +27,14 @@ test|API 取得のテスト
 
 ## 手順
 
-1. [RESAS_API](https://opendata.resas-portal.go.jp/) から API Key を取得する
-2. ```.env.local``` ファイルを作成し、取得した API Key を  ```RESAS_API_KEY``` に代入する（```env.local.sample``` 参照）
+1. [RESAS-API](https://opendata.resas-portal.go.jp/) から API Key を取得する
+2. ```.env.local``` ファイルを作成し、取得した API Key を  ```RESAS_API_KEY``` に代入する（```.env.local.sample``` 参照）
 3. ```yarn dev``` or ```npm run dev``` で [http://localhost:3000](http://localhost:3000) を開く
 
 ## 参考
 
-\*RESAS API: https://opendata.resas-portal.go.jp/
+\*RESAS-API: https://opendata.resas-portal.go.jp/
 
-\*RESAS API 仕様書: https://opendata.resas-portal.go.jp/docs/api/v1/index.html
+\*RESAS-API 仕様書: https://opendata.resas-portal.go.jp/docs/api/v1/index.html
 
 \*Highcharts: https://www.highcharts.com/
